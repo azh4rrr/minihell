@@ -6,7 +6,7 @@
 /*   By: azmakhlo <azmakhlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 18:17:18 by azmakhlo          #+#    #+#             */
-/*   Updated: 2024/11/17 19:01:51 by azmakhlo         ###   ########.fr       */
+/*   Updated: 2025/05/15 14:17:12 by azmakhlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	i = 0;
 	while (s1[i] && ft_strchr(set, s1[i]))
 		i++;
-	while (len >= 0 && ft_strchr(set, s1[len - 1]))
+	while (ft_strchr(set, s1[len - 1]))
 		len--;
 	return (ft_substr(s1, i, (len - i)));
 }

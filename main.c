@@ -6,11 +6,17 @@
 /*   By: azmakhlo <azmakhlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:42:15 by azmakhlo          #+#    #+#             */
-/*   Updated: 2025/05/13 18:56:45 by azmakhlo         ###   ########.fr       */
+/*   Updated: 2025/05/15 14:36:50 by azmakhlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void set_original_line(t_cmd *token, char *line)
+{
+	if (token)
+		token->line = ft_strdup(line);
+}
 
 void	free_cmd_list(t_cmd *token)
 {
@@ -27,10 +33,9 @@ void	free_cmd_list(t_cmd *token)
 int	process_line(char *line, t_cmd **token_ptr)
 {
 	if (ft_strlen(line) <= 0)
-		return (printf("strlen is <= 0 in main\n"), 1);
+		return (0);
 	add_history(line);
 	*token_ptr = tokenization(line);
-	free(line);
 	return (0);
 }
 
@@ -49,13 +54,15 @@ int	main(int ac, char **av)
 		line = readline("minishell> ");
 		if (!line)
 			return (printf("line is NULL in main\n"), 1);
-		token->line = line;
 		if (process_line(line, &token) != 0)
 			return (1);
 		if (token)
+		{
+			set_original_line(token, line);
 			print_cmd_list(token);
-		//!parcing(token);
-		if (token)
 			free_cmd_list(token);
+		}
+		else
+			free(line);
 	}
 }

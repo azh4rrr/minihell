@@ -6,7 +6,7 @@
 /*   By: azmakhlo <azmakhlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:41:40 by azmakhlo          #+#    #+#             */
-/*   Updated: 2025/05/13 17:41:53 by azmakhlo         ###   ########.fr       */
+/*   Updated: 2025/05/15 17:59:58 by azmakhlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	arg_create(t_cmd *token, char **cmds)
 	i = 0;
 	while (cmds[i])
 	{
-		if (setup_cmd_struct(current, cmds[i]))
+		if (setup_cmd_struct_with_redirection(current, cmds[i]))
 			return (1);
 		if (create_next_node(current, cmds[i + 1] != NULL))
 			return (1);
@@ -73,24 +73,30 @@ void	print_cmd_list(t_cmd *token)
 	while (tmp)
 	{
 		i = 0;
+		printf(COLOR_GREEN "COMMAND:" COLOR_RESET " ");
 		while (tmp->cmd && tmp->cmd[i])
-			printf("[%s]", tmp->cmd[i++]);
+			printf("[" COLOR_CYAN "%s" COLOR_RESET "]", tmp->cmd[i++]);
 		printf("\n");
+		if (tmp->redirec)
+			print_redirec_list(tmp->redirec);
 		tmp = tmp->next;
 	}
 }
 
-void	 free_cmd_node(t_cmd *node)
+void	free_cmd_node(t_cmd *node)
 {
 	int	i;
 
+	if (!node)
+		return;
 	i = 0;
 	while (node->cmd && node->cmd[i])
 		free(node->cmd[i++]);
-	free(node->cmd);
-	if (node->input)
-		free(node->input);
-	if (node->output)
-		free(node->output);
+	if (node->cmd)
+		free(node->cmd);
+	if (node->redirec)
+		free_redirec_list(node->redirec);
+	if (node->line)
+		free(node->line);
 	free(node);
 }

@@ -6,7 +6,7 @@
 /*   By: azmakhlo <azmakhlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:40:04 by azmakhlo          #+#    #+#             */
-/*   Updated: 2025/05/13 18:37:21 by azmakhlo         ###   ########.fr       */
+/*   Updated: 2025/05/15 14:46:18 by azmakhlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	free_cmd_array(char **cmds)
 {
 	int	i;
 
+	if (!cmds)
+		return (1);
 	i = 0;
 	while (cmds[i])
 		free(cmds[i++]);
@@ -27,7 +29,7 @@ int	allocate_token(t_cmd **token, char **cmds)
 {
 	int	i;
 
-	*token = malloc(sizeof(t_cmd));
+	*token = (t_cmd *)malloc(sizeof(t_cmd));
 	if (!*token)
 	{
 		i = 0;
@@ -36,30 +38,39 @@ int	allocate_token(t_cmd **token, char **cmds)
 		free(cmds);
 		return (1);
 	}
+	(*token)->cmd = NULL;
+	(*token)->line = NULL;
+	(*token)->next = NULL;
 	return (0);
 }
 
 int	setup_cmd_struct(t_cmd *current, char *cmd_str)
 {
-    
+	if (!current || !cmd_str)
+		return (1);
 	current->cmd = ft_split(cmd_str, ' ');
 	if (!current->cmd)
 		return (1);
-	current->input = NULL;
-	current->output = NULL;
+	current->line = NULL;
+	current->redirec = NULL;
 	return (0);
 }
 
 int	create_next_node(t_cmd *current, int has_next)
 {
+	if (!current)
+		return (1);
 	if (has_next)
 	{
-		current->next = malloc(sizeof(t_cmd));
+		current->next = (t_cmd *)malloc(sizeof(t_cmd));
 		if (!current->next)
 			return (1);
+		current->next->cmd = NULL;
+		current->next->line = NULL;
+		current->next->redirec = NULL;
+		current->next->next = NULL;
 	}
 	else
 		current->next = NULL;
 	return (0);
 }
-

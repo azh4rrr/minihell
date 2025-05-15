@@ -6,7 +6,7 @@
 /*   By: azmakhlo <azmakhlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:18:48 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/05/13 12:26:50 by azmakhlo         ###   ########.fr       */
+/*   Updated: 2025/05/15 14:45:59 by azmakhlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ typedef struct s_redirec
 typedef struct s_cmd
 {
 	char			**cmd;
-	t_redirec		*input;
-	t_redirec		*output;
+	t_redirec		*redirec;
 	struct s_cmd	*next;
 }						t_cmd;
 

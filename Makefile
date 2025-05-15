@@ -5,7 +5,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 LIBFT = ./libft
 LIBFT_A = $(LIBFT)/libft.a
-SOURCES = main.c utils_a.c utils_b.c
+SOURCES = main.c utils_a.c utils_b.c redirection.c parse_redir.c
 OBJECTS = $(SOURCES:.c=.o)
 INCLUDES = -I./
 
