@@ -6,7 +6,7 @@
 /*   By: azmakhlo <azmakhlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:40:04 by azmakhlo          #+#    #+#             */
-/*   Updated: 2025/05/15 14:46:18 by azmakhlo         ###   ########.fr       */
+/*   Updated: 2025/05/22 15:09:37 by azmakhlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int	allocate_token(t_cmd **token, char **cmds)
 		return (1);
 	}
 	(*token)->cmd = NULL;
-	(*token)->line = NULL;
 	(*token)->next = NULL;
+	(*token)->prev = NULL;  // Initialize prev pointer
 	return (0);
 }
 
@@ -51,7 +51,6 @@ int	setup_cmd_struct(t_cmd *current, char *cmd_str)
 	current->cmd = ft_split(cmd_str, ' ');
 	if (!current->cmd)
 		return (1);
-	current->line = NULL;
 	current->redirec = NULL;
 	return (0);
 }
@@ -66,11 +65,20 @@ int	create_next_node(t_cmd *current, int has_next)
 		if (!current->next)
 			return (1);
 		current->next->cmd = NULL;
-		current->next->line = NULL;
 		current->next->redirec = NULL;
 		current->next->next = NULL;
+		current->next->prev = current;  // Set backward link
 	}
 	else
 		current->next = NULL;
 	return (0);
+}
+
+t_cmd	*get_first_cmd(t_cmd *node)
+{
+	if (!node)
+		return (NULL);
+	while (node->prev)
+		node = node->prev;
+	return (node);
 }

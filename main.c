@@ -6,17 +6,11 @@
 /*   By: azmakhlo <azmakhlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:42:15 by azmakhlo          #+#    #+#             */
-/*   Updated: 2025/05/22 12:39:59 by azmakhlo         ###   ########.fr       */
+/*   Updated: 2025/05/22 15:08:44 by azmakhlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// void set_original_line(t_cmd *token, char *line)
-// {
-// 	if (token)
-// 		token->line = ft_strdup(line);
-// }
 
 void	free_cmd_list(t_cmd *token)
 {
@@ -52,7 +46,7 @@ int	main(int ac, char **av)
 	{
 		token = NULL;
 		line = readline("minishell> ");
-		syntax_error(line);
+		// syntax_error(line);//!todo
 		if (process_line(line, &token) != 0)
 			return (1);
 		if (token)

@@ -6,23 +6,17 @@
 /*   By: azmakhlo <azmakhlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 16:52:00 by azmakhlo          #+#    #+#             */
-/*   Updated: 2025/05/17 18:08:50 by azmakhlo         ###   ########.fr       */
+/*   Updated: 2025/05/22 15:09:50 by azmakhlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
- * Check if a character is a redirection symbol
- */
 int	is_redir_char(char c)
 {
 	return (c == '>' || c == '<');
 }
 
-/*
- * Tokenize the command string handling redirections with no spaces
- */
 char	**tokenize_with_redirections(char *cmd_str)
 {
 	char	**tokens;
@@ -56,9 +50,6 @@ char	**tokenize_with_redirections(char *cmd_str)
 	return (tokens);
 }
 
-/*
- * Count the number of tokens that aren't redirections or redirection arguments
- */
 int	count_valid_tokens(char **tokens)
 {
 	int	i;
@@ -84,7 +75,6 @@ char	*build_cmd_string(char **tokens, int token_count)
 	char	*new_cmd;
 	char	*temp;
 	int		i;
-	int		redir_type;
 
 	if (token_count == 0)
 		return (ft_strdup(""));
@@ -94,8 +84,7 @@ char	*build_cmd_string(char **tokens, int token_count)
 	i = 0;
 	while (tokens[i])
 	{
-		redir_type = check_redirection_type(tokens[i]);
-		if (redir_type > 0 && tokens[i + 1])
+		if (check_redirection_type(tokens[i]) > 0 && tokens[i + 1])
 			i += 2;
 		else
 		{
@@ -117,9 +106,6 @@ char	*build_cmd_string(char **tokens, int token_count)
 	return (new_cmd);
 }
 
-/*
- * Add redirections from tokens to the redirection list
- */
 int	add_redirections(char **tokens, t_redirec **redirec_list)
 {
 	int			i;
@@ -152,9 +138,6 @@ int	add_redirections(char **tokens, t_redirec **redirec_list)
 	return (0);
 }
 
-/*
- * Parse redirections and return a new command string without them
- */
 char	*parse_redirections(char *cmd_str, t_redirec **redirec_list)
 {
 	char	**tokens;

@@ -6,7 +6,7 @@
 /*   By: azmakhlo <azmakhlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:41:40 by azmakhlo          #+#    #+#             */
-/*   Updated: 2025/05/17 18:08:29 by azmakhlo         ###   ########.fr       */
+/*   Updated: 2025/05/22 15:08:33 by azmakhlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,5 @@ void	free_cmd_node(t_cmd *node)
 		free(node->cmd);
 	if (node->redirec)
 		free_redirec_list(node->redirec);
-	if (node->line)
-		free(node->line);
 	free(node);
 }
