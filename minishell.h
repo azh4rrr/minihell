@@ -39,7 +39,6 @@ typedef struct s_redirec
 
 typedef struct s_cmd
 {
-	char 				*line;
 	char				**cmd;
 	t_redirec			*redirec;
 	struct s_cmd		*prev;
