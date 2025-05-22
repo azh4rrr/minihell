@@ -6,7 +6,7 @@
 /*   By: azmakhlo <azmakhlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 13:23:24 by azmakhlo          #+#    #+#             */
-/*   Updated: 2025/05/17 18:08:14 by azmakhlo         ###   ########.fr       */
+/*   Updated: 2025/05/22 12:35:21 by azmakhlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	print_cmd_list(t_cmd *token);
 void	free_cmd_node(t_cmd *node);
 
 /* main.c */
-void    set_original_line(t_cmd *token, char *line);
+// void    set_original_line(t_cmd *token, char *line);
 void	free_cmd_list(t_cmd *token);
 int		process_line(char *line, t_cmd **token_ptr);
 
