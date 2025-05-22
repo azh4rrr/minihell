@@ -6,7 +6,7 @@
 /*   By: azmakhlo <azmakhlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 16:52:00 by azmakhlo          #+#    #+#             */
-/*   Updated: 2025/05/15 17:51:56 by azmakhlo         ###   ########.fr       */
+/*   Updated: 2025/05/17 18:08:50 by azmakhlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,17 @@ char	**tokenize_with_redirections(char *cmd_str)
 	temp_cmd = (char *)malloc(sizeof(char) * (ft_strlen(cmd_str) * 3 + 1));
 	if (!temp_cmd)
 		return (NULL);
-	
 	i = 0;
 	j = 0;
 	while (cmd_str[i])
 	{
 		if (is_redir_char(cmd_str[i]))
 		{
-			// Add space before redirection if not already there
 			if (i > 0 && cmd_str[i - 1] != ' ')
 				temp_cmd[j++] = ' ';
-			
-			// Add the redirection char
 			temp_cmd[j++] = cmd_str[i++];
-			
-			// Handle double redirection (>> or <<)
-			if (cmd_str[i] && is_redir_char(cmd_str[i]) && cmd_str[i] == cmd_str[i - 1])
+			if (cmd_str[i] && is_redir_char(cmd_str[i]))
 				temp_cmd[j++] = cmd_str[i++];
-			
-			// Add space after redirection if not already there
 			if (cmd_str[i] && cmd_str[i] != ' ')
 				temp_cmd[j++] = ' ';
 		}
@@ -59,7 +51,6 @@ char	**tokenize_with_redirections(char *cmd_str)
 			temp_cmd[j++] = cmd_str[i++];
 	}
 	temp_cmd[j] = '\0';
-	
 	tokens = ft_split(temp_cmd, ' ');
 	free(temp_cmd);
 	return (tokens);
@@ -88,9 +79,6 @@ int	count_valid_tokens(char **tokens)
 	return (count);
 }
 
-/*
- * Build a new command string without redirections
- */
 char	*build_cmd_string(char **tokens, int token_count)
 {
 	char	*new_cmd;
@@ -146,7 +134,7 @@ int	add_redirections(char **tokens, t_redirec **redirec_list)
 		{
 			new_node = NULL;
 			if (redir_type == 1)
-				new_node = create_redirec_node(tokens[i + 1], D_FILE);
+				new_node = create_redirec_node(tokens[i + 1], D_OUTFILE);
 			else if (redir_type == 2)
 				new_node = create_redirec_node(tokens[i + 1], D_APPEND);
 			else if (redir_type == 3)

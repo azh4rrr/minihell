@@ -1,0 +1,16 @@
+exec.h
+[0m[01;34mlibft[0m
+main.c
+main.o
+Makefile
+[01;32mminishell[0m
+minishell.h
+out
+parse_redir.c
+parse_redir.o
+redirection.c
+redirection.o
+utils_a.c
+utils_a.o
+utils_b.c
+utils_b.o

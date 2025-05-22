@@ -6,7 +6,7 @@
 /*   By: azmakhlo <azmakhlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 13:23:24 by azmakhlo          #+#    #+#             */
-/*   Updated: 2025/05/15 18:04:00 by azmakhlo         ###   ########.fr       */
+/*   Updated: 2025/05/17 18:08:14 by azmakhlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 
 typedef enum s_type
 {
-	D_FILE,     // > (output redirection)
-	D_APPEND,   // >> (output append redirection)
-	D_INFILE,   // < (input redirection)
-	D_HERDOC    // << (heredoc)
+	D_OUTFILE,     // > 
+	D_APPEND,   // >> 
+	D_INFILE,   // < 
+	D_HERDOC    // << 
 }						t_type;
 
 typedef struct s_redirec
@@ -42,6 +42,7 @@ typedef struct s_cmd
 	char 				*line;
 	char				**cmd;
 	t_redirec			*redirec;
+	struct s_cmd		*prev;
 	struct s_cmd		*next;
 }				t_cmd;
 
@@ -77,7 +78,7 @@ int			add_redirections(char **tokens, t_redirec **redirec_list);
 char		*parse_redirections(char *cmd_str, t_redirec **redirec_list);
 int			setup_cmd_struct_with_redirection(t_cmd *current, char *cmd_str);
 
-/* ANSI Color Codes */
+/* Color Codes */
 #define COLOR_RESET   "\033[0m"
 #define COLOR_RED     "\033[1;31m"
 #define COLOR_GREEN   "\033[1;32m"

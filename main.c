@@ -6,7 +6,7 @@
 /*   By: azmakhlo <azmakhlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:42:15 by azmakhlo          #+#    #+#             */
-/*   Updated: 2025/05/15 14:36:50 by azmakhlo         ###   ########.fr       */
+/*   Updated: 2025/05/17 16:24:50 by azmakhlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ int	main(int ac, char **av)
 	{
 		token = NULL;
 		line = readline("minishell> ");
-		if (!line)
-			return (printf("line is NULL in main\n"), 1);
 		if (process_line(line, &token) != 0)
 			return (1);
 		if (token)
