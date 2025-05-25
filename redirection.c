@@ -6,7 +6,7 @@
 /*   By: azmakhlo <azmakhlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:00:00 by azmakhlo          #+#    #+#             */
-/*   Updated: 2025/05/22 15:08:57 by azmakhlo         ###   ########.fr       */
+/*   Updated: 2025/05/25 17:57:01 by azmakhlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,19 +75,18 @@ int	check_redirection_type(const char *str)
 
 void	print_redirec_list(t_redirec *head)
 {
-	t_redirec	*current;
-	const char	*type_str[4] = {
-		COLOR_RED "OUTPUT" COLOR_RESET,
-		COLOR_YELLOW "APPEND" COLOR_RESET,
-		COLOR_BLUE "INPUT" COLOR_RESET,
-		COLOR_MAGENTA "HEREDOC" COLOR_RESET
-	};
+	t_redirec *current;
+	const char *type_str[4] = {COLOR_RED "OUTPUT" COLOR_RESET,
+		COLOR_YELLOW "APPEND" COLOR_RESET, COLOR_BLUE "INPUT" COLOR_RESET,
+		COLOR_MAGENTA "HEREDOC" COLOR_RESET};
 
 	current = head;
 	while (current)
 	{
-		printf(COLOR_GREEN "REDIRECTION:" COLOR_RESET " [" COLOR_CYAN "%s" COLOR_RESET "] Type: %s\n",
-			current->name, type_str[current->type]);
+		printf(COLOR_GREEN "REDIRECTION:" COLOR_RESET " [" COLOR_CYAN "%s" COLOR_RESET "] Type:"
+							"%s\n",
+				current->name,
+				type_str[current->type]);
 		current = current->next;
 	}
 }

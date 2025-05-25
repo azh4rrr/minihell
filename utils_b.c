@@ -6,7 +6,7 @@
 /*   By: azmakhlo <azmakhlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:41:40 by azmakhlo          #+#    #+#             */
-/*   Updated: 2025/05/22 15:08:33 by azmakhlo         ###   ########.fr       */
+/*   Updated: 2025/05/25 17:57:22 by azmakhlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,10 @@ void	print_cmd_list(t_cmd *token)
 
 void	free_cmd_node(t_cmd *node)
 {
-	int	i;
+	int i;
 
 	if (!node)
-		return;
+		return ;
 	i = 0;
 	while (node->cmd && node->cmd[i])
 		free(node->cmd[i++]);

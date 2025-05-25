@@ -6,7 +6,7 @@
 /*   By: azmakhlo <azmakhlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 16:52:00 by azmakhlo          #+#    #+#             */
-/*   Updated: 2025/05/22 15:09:50 by azmakhlo         ###   ########.fr       */
+/*   Updated: 2025/05/25 17:56:02 by azmakhlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	**tokenize_with_redirections(char *cmd_str)
 	char	*temp_cmd;
 	int		i;
 	int		j;
-	
+
 	temp_cmd = (char *)malloc(sizeof(char) * (ft_strlen(cmd_str) * 3 + 1));
 	if (!temp_cmd)
 		return (NULL);
@@ -166,7 +166,7 @@ char	*parse_redirections(char *cmd_str, t_redirec **redirec_list)
 
 int	setup_cmd_struct_with_redirection(t_cmd *current, char *cmd_str)
 {
-	char	*processed_cmd;
+	char *processed_cmd;
 
 	if (!current || !cmd_str)
 		return (1);

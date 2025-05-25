@@ -6,7 +6,7 @@
 /*   By: azmakhlo <azmakhlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:42:15 by azmakhlo          #+#    #+#             */
-/*   Updated: 2025/05/22 15:08:44 by azmakhlo         ###   ########.fr       */
+/*   Updated: 2025/05/25 20:23:29 by azmakhlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,11 @@ int	main(int ac, char **av)
 	{
 		token = NULL;
 		line = readline("minishell> ");
-		// syntax_error(line);//!todo
 		if (process_line(line, &token) != 0)
 			return (1);
-		if (token)
+		if(syntax_error(line))
+			free_cmd_list(token);
+		else if (token)
 		{
 			print_cmd_list(token);
 			free_cmd_list(token);
