@@ -6,7 +6,7 @@
 /*   By: azmakhlo <azmakhlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 16:52:00 by azmakhlo          #+#    #+#             */
-/*   Updated: 2025/05/25 17:56:02 by azmakhlo         ###   ########.fr       */
+/*   Updated: 2025/05/26 20:50:39 by azmakhlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ char	**tokenize_with_redirections(char *cmd_str)
 			if (i > 0 && cmd_str[i - 1] != ' ')
 				temp_cmd[j++] = ' ';
 			temp_cmd[j++] = cmd_str[i++];
-			if (cmd_str[i] && is_redir_char(cmd_str[i]))
+			if (cmd_str[i] && is_redir_char(cmd_str[i])
+				&& cmd_str[i] == cmd_str[i - 1])
 				temp_cmd[j++] = cmd_str[i++];
 			if (cmd_str[i] && cmd_str[i] != ' ')
 				temp_cmd[j++] = ' ';

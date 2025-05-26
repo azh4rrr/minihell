@@ -37,7 +37,7 @@ int handle_quotes(char *line)
     return(0);
 }
 
-char	**tokenize_with_redirections(char *cmd_str)
+char	**tokenize_with_redirections_2(char *cmd_str)
 {
 	char	**tokens;
 	char	*temp_cmd;
@@ -56,7 +56,7 @@ char	**tokenize_with_redirections(char *cmd_str)
 			if (i > 0 && cmd_str[i - 1] != ' ')
 				temp_cmd[j++] = ' ';
 			temp_cmd[j++] = cmd_str[i++];
-			if (cmd_str[i] && is_redir_char(cmd_str[i]))
+			if (cmd_str[i] && is_redir_char(cmd_str[i]) && cmd_str[i] == cmd_str[i - 1])      //s>>>|<<<|>>>  //s >> 
 				temp_cmd[j++] = cmd_str[i++];
 			if (cmd_str[i] && cmd_str[i] != ' ')
 				temp_cmd[j++] = ' ';
@@ -65,6 +65,7 @@ char	**tokenize_with_redirections(char *cmd_str)
 			temp_cmd[j++] = cmd_str[i++];
 	}
 	temp_cmd[j] = '\0';
+    printf("%s",temp_cmd);
 	tokens = ft_split(temp_cmd, ' ');
 	free(temp_cmd);
 	return (tokens);

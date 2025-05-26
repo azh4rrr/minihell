@@ -1,0 +1,108 @@
+# MINISHELL SYNTAX ERROR TEST CASES
+
+# === PIPE ERRORS ===
+ls |
+ls ||
+ls |||
+| ls
+|| ls
+ls | |
+echo "test" | | cat
+cat file | | grep pattern
+ls | && echo "done"
+
+# === REDIRECTION ERRORS ===
+ls >
+ls >>
+ls <
+ls <<
+> ls
+>> ls
+< ls
+<< ls
+ls > >
+ls >> >>
+ls < <
+ls << <<
+ls > < file
+cat < < file
+echo "test" > > file
+
+# === QUOTE ERRORS ===
+ls 'unclosed
+ls "unclosed
+echo 'single quote unclosed
+echo "double quote unclosed
+ls 'mixed"quotes'
+ls "mixed'quotes"
+echo 'can\'t close properly
+echo "can\"t close properly
+
+# === LOGICAL OPERATOR ERRORS ===
+ls &&
+ls ||
+&& ls
+|| ls
+ls && &&
+ls || ||
+ls && ||
+ls || &&
+
+# === COMBINED PIPE AND REDIRECTION ERRORS ===
+ls | > file
+ls < | cat
+ls > | file
+ls | < file
+ls > file | cat
+ls | cat >
+ls | cat <
+
+# === EMPTY COMMANDS ===
+|
+||
+&&
+>
+>>
+<
+<<
+> file
+>> file
+< file
+<< file
+
+# === MULTIPLE CONSECUTIVE OPERATORS ===
+ls > > > file
+ls < < < file
+ls | | | cat
+ls && && echo
+ls || || echo
+
+# === QUOTES WITH OPERATORS ===
+'ls |
+"ls |
+ls | '
+ls | "
+'ls >
+"ls >
+ls > '
+ls > "
+
+# === INVALID REDIRECTIONS ===
+ls > 
+ls >> 
+ls < 
+ls << 
+ls > file >
+ls >> file >>
+ls < file <
+ls << file <<
+
+# === TRICKY COMBINATIONS ===
+ls | | > file
+ls > | | file
+| ls > file
+> ls | cat
+ls && | cat
+ls || | cat
+ls | && cat
+ls | || cat

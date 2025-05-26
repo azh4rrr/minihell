@@ -6,7 +6,7 @@
 /*   By: azmakhlo <azmakhlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 13:23:24 by azmakhlo          #+#    #+#             */
-/*   Updated: 2025/05/25 20:17:41 by azmakhlo         ###   ########.fr       */
+/*   Updated: 2025/05/26 19:56:30 by azmakhlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_cmd
 
 /*syntax_error.c*/
 
-int		syntax_error(char *line);
+int						syntax_error(char *line);
 
 /* utils_a.c */
 int						free_cmd_array(char **cmds);
@@ -80,6 +80,7 @@ char					*parse_redirections(char *cmd_str,
 							t_redirec **redirec_list);
 int						setup_cmd_struct_with_redirection(t_cmd *current,
 							char *cmd_str);
+int						is_redir_char(char c);
 
 /* doubly_linked_utils.c */
 t_cmd					*get_first_cmd(t_cmd *node);
