@@ -6,7 +6,7 @@
 /*   By: azmakhlo <azmakhlo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 13:23:24 by azmakhlo          #+#    #+#             */
-/*   Updated: 2025/05/26 19:56:30 by azmakhlo         ###   ########.fr       */
+/*   Updated: 2025/05/28 16:26:44 by azmakhlo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 
 typedef enum s_type
 {
-	D_OUTFILE, // >
-	D_APPEND,  // >>
-	D_INFILE,  // <
-	D_HERDOC   // <<
+	D_OUTFILE,
+	D_APPEND,
+	D_INFILE,
+	D_HERDOC
 }						t_type;
 
 typedef struct s_redirec
